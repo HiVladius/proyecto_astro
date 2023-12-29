@@ -1,25 +1,91 @@
-
 ---
+import Navegation from '../components/Navegation.astro';
+import '../styles/global.css';
 const pageTitle = "Sobre mi";
+
+const identity = {
+  name: "Vladimir",
+  location: "Mexico",
+  role: "Desarrollador web",
+  hobbies: [
+    "programar",
+    "leer",
+    "ver series",
+    "jugar a videojuegos",
+    "play violin",
+  ],
+};
+
+const skills = ["JavaScript", "React", "Node.js"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "green";
 ---
+
 <html lang="es">
-    
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{pageTitle}</title>
-    </head>
-    <body>
-        <a href="/">Inicio</a>
-        <a href="/about/">Sobre mi</a>
-        <a href="/blog/">Blog</a>
-        <h1>{pageTitle}</h1>
-        <h2>... ¡y mi nuevo sitio Astro!</h2>
+  <head>
+    <Navegation />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <style define:vars="{{skillColor}}">
+      a {
+        color: blue;
+        font-size: 1rem;
+        animation: fadeIn 1s ease-in-out;
+      }
+      h1 {
+        color: #333;
+        font-size: 2rem;
+        animation: fadeIn 1s ease-in-out;
+      }
 
-        <p>Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda página de mi sitio web, ¡y es la primera que he construido yo mismo!</p>
-
-        <p>Este sitio se irá actualizando a medida que vaya completando más partes del tutorial, ¡así que no dejes de visitarlo para ver cómo va mi viaje!</p>
-
-     
-    </body>
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    .skill {
+        color: var(--skillColor)
+        font-weight: bold;
+    }
+    </style>
+  </head>
+  <body>
+    <a href="/">Inicio</a>
+    <h1>He aquí algunos datos sobre mí:</h1>
+    <ul>
+      <li>Me llamo {identity.name}.</li>
+      <li>Vivo en {identity.location} y trabajo como {identity.role}.</li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>
+            Dos de mis aficiones son: {identity.hobbies[0]} y{" "}
+            {identity.hobbies[1]}
+          </li>
+        )
+      }
+      {happy ? <li>Estoy feliz</li> : <li>No estoy feliz</li>}
+      {finished ? <li>He terminado</li> : <li>No he terminado</li>}
+      {
+        goal === 3 ? (
+          <li>He alcanzado mi meta</li>
+        ) : (
+          <li>No he alcanzado mi meta</li>
+        )
+      }
+    </ul>
+    <p>Mis habilidades son:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+  </body>
 </html>
