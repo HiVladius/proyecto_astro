@@ -1,21 +1,23 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
 import Navigation from "../components/Navegation.astro";
-const myTitle = "Mi Blog de Astro - Home";
+const allPosts = await Astro.glob('../pages/posts/*.md');
+const pageTitle = "Mi Blog de Astro - Home";
 ---
 
 <html lang="en">
-  <Navigation />
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{myTitle}</title>
+  
   </head>
   <body>
-    <h1>{myTitle}</h1>
+  
 
-    <div>
+    <BaseLayout pageTitle={pageTitle}>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
         accusamus recusandae laudantium pariatur distinctio quo explicabo
@@ -24,12 +26,10 @@ const myTitle = "Mi Blog de Astro - Home";
       </p>
 
       <ul>
-        <li><a href="/posts/post-1">Publicaciones</a></li>
-        <li><a href="/posts/post-2">Publicaciones</a></li>
-        <li><a href="/posts/post-3">Publicaciones</a></li>
+        {allPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
         
       </ul>
-    </div>
+    </BaseLayout>
    
   </body>
   <style>
