@@ -3,6 +3,8 @@ import Navegation from '../components/Navegation.astro';
 import '../styles/global.css';
 const pageTitle = "Sobre mi";
 
+import{Octokit} from 'octokit';
+
 const identity = {
   name: "Vladimir",
   location: "Mexico",
@@ -16,7 +18,15 @@ const identity = {
   ],
 };
 
-const skills = ["JavaScript", "React", "Node.js"];
+const skills = ["JavaScript", "React", "Node.js", "Express", "MongoDB", "HTML", "CSS", "Astro"];
+const links = [
+  { label: "Home", url: "/" },
+  { label: "About", url: "/about" },
+  { label: "Contact", url: "/contact" },
+];
+
+const octokit = new Octokit();
+
 
 const happy = true;
 const finished = false;
@@ -68,8 +78,10 @@ const skillColor = "green";
       {
         identity.hobbies.length >= 2 && (
           <li>
-            Dos de mis aficiones son: {identity.hobbies[0]} y{" "}
-            {identity.hobbies[1]}
+            Dos de mis aficiones son: 
+            {identity.hobbies[0]} {", "}
+            {identity.hobbies[1]} {", "}
+            {identity.hobbies[4]} {", "}
           </li>
         )
       }
@@ -87,5 +99,12 @@ const skillColor = "green";
     <ul>
       {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
+
+    <p>Proyectos que he realizado</p>
+
+    <ul>
+
+    </ul>
+
   </body>
 </html>

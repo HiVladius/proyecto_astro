@@ -1,8 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Pagina de Inicio";
+
+ const pageTitle = "¡Hey! Bienvendo a mi portafolio";
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2>Mi impresionante subtítulo del blog</h2>
+  <h2>Un poco sobre de mi</h2>
+
+  <div>
+    <p>¡Hola! Soy un desarrollador web y diseñador de UX con sede en la Ciudad de México. Me encanta crear cosas hermosas y funcionales para la web. Este es mi blog personal, 
+      donde comparto mis pensamientos y experiencias sobre diseño, desarrollo web y tecnología.</p>
+  </div>
+  
+
+  <p>Si tienes alguna pregunta o comentario, no dudes en <a href="/contact">contactarme</a>. ¡Me encantaría saber de ti!</p>
+
+  <script>
+    const pageTitle = document.title;
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){
+        document.title = "¡Hey! me siento solo, vuelve 🥲";
+      } else {
+        document.title = pageTitle;
+      }
+    })
+    </script>
 </BaseLayout>

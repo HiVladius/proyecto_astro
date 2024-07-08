@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+import qrWhatssapp from "../assets/QR.jpg";
+import qrTelegram from "../assets/telegramQR.jpg";
+
+import { Image } from "astro:assets";
+
+const pageTitle = "¡Hey! Bienvendo a mi portafolio";
+---
+
+<BaseLayout>
+  <div>
+    <h2>Escanea mi el codigo y hablemos</h2>
+    <div>
+      <Image
+        src={qrWhatssapp}
+        alt="QR code"
+        width={qrWhatssapp.width / 4}
+        densities={[1, 5, 2]}
+      />
+
+      <Image
+        src={qrTelegram}
+        alt="QR telegram"
+        width={qrTelegram.width / 4}
+        densities={[1, 5, 2]}
+      />
+
+
+    </div>
+  </div>
+</BaseLayout>
